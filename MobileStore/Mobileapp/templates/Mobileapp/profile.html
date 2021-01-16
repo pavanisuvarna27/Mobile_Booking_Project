@@ -1,0 +1,48 @@
+{% extends 'Mobileapp/base.html' %}
+{% block title %} Profile::{{user.username}}{% endblock title %}
+{% block content %}
+<div class="container">
+	{% if messages %}
+		{% for msg in messages %}
+			<div class="alert alert-{{ msg.tags}} alert-dismissible mt-2">
+				<button type="button" class="close" data-dismiss='alert'>&times;</button>{{ msg }}</div>
+		{% endfor %}
+	{% endif %}
+	<div class="row mt-3">
+		<div class="card col-md-4 mx-2">
+			<h2 class="bg-primary text-white text-center p-2 border rounded my-2">Profile</h2>
+			<div class="card-body">
+				<img src="{{request.user.update.image.url}}" height="230px" width="100%">
+			</div>
+		</div>
+		<div class="card col-md-4 mx-2">
+			<h2 class="bg-danger text-white text-center p-2 border rounded my-2 ">User Details</h2>
+	        <table class="table table-borderless mx-3 my-2">
+	        	<tr>
+	        		<th>First Name </th>
+	        		<td>{{user.first_name}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Last Name </th>
+	        		<td>{{user.last_name}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Date of Joining </th>
+	        		<td>{{user.date_joined}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Last Joined into site </th>
+	        		<td>{{user.last_login}}</td>
+	        	</tr>
+	        	<tr>
+	        		<th>Age </th>
+	        		<td>{{user.update.age}}</td>
+	        	</tr>
+	        	
+	        </table>
+	        <a href="{% url 'update' %}" class="btn btn-success my-2">Update</a>
+	        </div>	
+</div>
+</div>
+{% endblock content %}
+

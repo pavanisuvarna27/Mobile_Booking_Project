@@ -1,0 +1,47 @@
+{% extends 'Mobileapp/base.html' %}
+{% block title %} Sign Up {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  	ul,li{
+  		list-style-type: none;
+  	}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+	
+	<form method="POST" action="#">
+		<div class="row justify-content-center">
+		<div class="col-sm-6">
+		<div class="card">
+		<div class="card-header p-3 mb-2 bg-info text-white text-center p-2 border rounded"><h2>SignUp Form</h2></div>
+		<div class="card-body">
+			{% csrf_token %}
+			{{ form.as_p }}
+		</div>
+		<div class="card-footer" >
+
+			<input class='btn p-3 mb-2 bg-success text-white btn-outline btn-block' type="submit" name="submit" value="Sign Up">
+		</div>
+	</div>
+	</div>
+	</div>	
+
+</form>
+</div>
+</body>
+</html>
+ 
+{% endblock %}

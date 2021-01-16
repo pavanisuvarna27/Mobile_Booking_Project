@@ -1,0 +1,54 @@
+{% extends 'Mobileapp/base.html' %}
+{% block title %} Contactus {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="p-4 m-4">
+
+        
+        <div class="col-lg-9 rounded mx-auto border pt-2">
+            <div class="text-center col">
+            
+                <img 
+                src="https://image.flaticon.com/icons/png/512/429/429324.png" alt=""
+                class="" style="height: 150px;">
+            <!-- <hr> -->
+            <div class="display-8"><h5>Contact Us</h5></div>
+            <hr>
+            </div>
+    <div id="contact" class="container">
+  <h4 class="text-center">Contact</h4>
+  <p class="text-center"><em>We love our fans!</em></p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p>Contact Us? Drop a note.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span>Vijayawada, India</p>
+      <p><span class="glyphicon glyphicon-phone"></span>Tollfree: 1800-425-2422</p>
+      <p><span class="glyphicon glyphicon-envelope"></span>Email: durga.k@apssdc.in</p>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <br>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn btn-sm btn-info col-lg-2" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  </div>
+</div>
+
+  
+
+{% endblock %}

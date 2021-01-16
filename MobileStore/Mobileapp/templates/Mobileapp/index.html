@@ -1,0 +1,64 @@
+{% extends 'Mobileapp/base.html' %}
+
+{% block content %}
+{% load cart %}
+<!-- body -->
+<div class="container-fluid mt-3">
+	<div class="row">
+
+
+		<!-- filter -->
+
+		<div class="col-lg-3 mx-auto">
+			<div class="list-group">
+
+				<a href="/" class="list-group-item list-group-item-action">All Products</a>
+
+				{% for category in categories %}
+				<a href="/?category={{category.id}}"
+					class="list-group-item list-group-item-action">{{category.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
+
+		<!-- all products -->
+		<div id='products' class="col-lg-9 mx-auto">
+			<div class="row mx-auto">
+				{% for product in products %}
+				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+					<div class="card-body">
+						<p class="card-title">{{product.name}}</p>
+						<p class="card-text"><b>₹ {{product.price}}</b></p>
+						<form action="/#{{ product.id }}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ product.id }}" name="product">
+                                {% if user.is_authenticated %}
+                                	{% if not user.is_superuser %}
+                                    	{% if product|is_in_cart:request.session.cart %}
+                                    	<a  class="btn btn-warning" href="/cart">go to cart </a>
+                                    	{% else %}
+                                    	<input class="btn btn-primary" type="submit" value="Add to cart">
+                                    	{% endif %}
+                                    {% endif %}
+                                {% endif %}
+                                    {% if not user.is_authenticated %}
+                                    <a class="btn btn-primary" href="/signin" value="Add to cart">Add to cart</a>
+                                    {% endif %}
+                                    <a class="btn btn-success" href="/?id={{ product.id }}">View</a>
+                                </form>
+						
+					</div>
+
+					
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

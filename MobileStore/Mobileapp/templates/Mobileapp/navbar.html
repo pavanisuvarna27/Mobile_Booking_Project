@@ -1,0 +1,73 @@
+{% load static %}
+{% load cart %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="https://image.flaticon.com/icons/png/512/429/429324.png" alt="logo" style="width:40px;">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'home' %}">Mobile Store</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'about' %}">About Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'home' %}">Mobile Store</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+    </li>
+    {% if user.is_superuser %}
+    <li class="nav-item">
+      <a class="nav-link" href="#">Add Product</a>
+    </li>
+    {% endif %}
+    {% endif %}
+  </ul>
+  <ul class="navbar-nav ml-auto" >
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signin' %}"><span class="glyphicon glyphicon-log-in"></span>Sign In</a>
+    </li>
+    {% else %}
+    <li>
+    {% if not user.is_superuser %}
+    <li class="nav-item ">
+          <a class="nav-link" href="/cart">Cart 
+            <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+
+    <li class="nav-item ">
+          <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
+    <li class="dropdown">
+      <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown"><img src="{{request.user.update.image.url}}" height="25px" width="25px" class="rounded-circle" />Hi  {{user.username}}</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+        <a class="dropdown-item" href="#">Change Password</a>
+        <a class="dropdown-item" href="{% url 'signout' %}">Logout</a>
+      </div>
+    </li>
+</li>
+    {% endif %}
+  </ul>
+</div>
+</nav>

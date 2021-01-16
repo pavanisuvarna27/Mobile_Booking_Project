@@ -1,0 +1,27 @@
+{% extends 'Mobileapp/base.html' %}
+{% block title %} Signout Form {% endblock title %}
+{% block content %}
+<div class="container">
+		<form action="" method="POST">
+			<div class="row justify-content-center">
+				<div class="col-sm-6">
+		<div class="card">
+			<div class="card-header bg-primary">Logout Form</div>
+
+		    <div class="card-body">
+		    	<div class="alert alert-success">
+
+	<h3>you have been logged out </h3>
+	</div>
+</div>
+		<div class="card-footer">
+		
+		<a href="{% url 'signin' %}">click here to login again</a>
+	      
+        </div>
+    </div>
+</div>
+</div>
+    </form>
+</div>
+{% endblock content %}

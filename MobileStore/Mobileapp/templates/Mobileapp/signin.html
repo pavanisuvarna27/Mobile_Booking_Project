@@ -1,0 +1,47 @@
+{% extends 'Mobileapp/base.html' %}
+{% block title %} Sign In{% endblock %}
+{% block content %}
+<div class="container">
+	{% if messages %}
+	{% for j in messages %}
+	<div class="alert alert-{{j.tags}} alert-dismissible mt-2">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		{{j}}
+	</div>
+	{% endfor %}
+	{% endif %}
+	<div class="p-4 m-4">
+        <div class="col-lg-4 mt-4 border mb-4 mx-auto rounded pt-4">
+            <div class="text-center col">
+            
+                <img 
+                src="https://image.flaticon.com/icons/png/512/429/429324.png" alt=""
+                class="" style="height: 150px;">
+            <!-- <hr> -->
+            <div class="display-8"><h5>Login An Account</h5></div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border mt-4 mb-4 rounded">Login Here</h3>
+	<form method="POST" action="#">
+		
+		<div class="card-body">
+			{% csrf_token %}
+			<div class="form-group mx-3">		
+				<input type="text" name="username" placeholder="Enter Username" class="form-control my-2 ">
+				<input type="password" name="password" placeholder="Enter your Password" class="form-control my-2"></div>
+		</div>
+		<hr>
+                <div class="form-group">
+                    <input class="btn btn-sm btn-info col-lg-4" type="submit" value="Login">
+                </div>
+                <!-- {% if error %}
+                <li style="color: red;">{{error}}</li>
+                {% endif %} -->
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

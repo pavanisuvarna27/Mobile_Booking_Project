@@ -1,0 +1,35 @@
+{% extends 'Mobileapp/base.html' %}
+{% block title %}Update{% endblock %}
+{% block content %}
+<div class="container">
+	<form method="POST" enctype="multipart/form-data">
+		<div class="row justify-content-center">
+		<div class="col-sm-6">
+		<div class="card">
+		<div class="card-header bg-primary text-center p-2 border rounded"><h2>Update Form</h2></div>
+		<div class="card-body">
+			{% csrf_token %}
+			<table class="table table-borderless">
+					{% for n in b %}
+					<tr>
+						<td>{{n}}</td>
+					</tr>
+					{% endfor %}
+					{% for e in q %}
+					<tr>
+						<td>{{e}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+		</div>
+		<div class="card-footer" >
+
+			<input class='btn btn-success btn-outline btn-block' type="submit" name="submit" value="Update">
+		</div>
+	</div>
+	</div>
+	</div>	
+
+</form>
+</div>
+{% endblock %}

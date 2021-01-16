@@ -1,0 +1,58 @@
+{% extends 'Mobileapp/base.html' %}
+{% load cart %}
+{% block title %} Mobilestore | Product {% endblock %}
+{% block content %}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-3 mx-auto">
+            <div class="list-group">
+
+                <a href="/" class="list-group-item list-group-item-action">All Products</a>
+
+                {% for category in categories %}
+                <a href="/?category={{category.id}}"
+                    class="list-group-item list-group-item-action">{{category.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div id='products' class="col-lg-9 mx-auto">
+            	{% if product  %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ product.image.url }}" height="100%;" width="250px" alt="{{ product.name }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <h1 class="font-weight-light">{{ product.name }}</h1><br>
+                                        <h4 class="font-weight-light">Price: <strong>₹ {{ product.price}}</strong></h4>
+                                        <p class="mt-2"><strong>Description: </strong> {{ product.description }}</p>
+                                         <form action="/#{{ product.id }}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="{{ product.id }}" name="product">
+                                        {% if not user.is_superuser%}
+                                            {% if user.is_authenticated %}
+                                                {% if product|is_in_cart:request.session.cart %}
+                                                <a class="btn btn-warning" href="/cart">Go to cart </a>
+                                                {% else %}
+                                                <input class="btn btn-primary" type="submit" value="Add to cart">
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if not user.is_authenticated %}
+                                            <a class="btn btn-primary" href="/signin" value="Add to cart">Add to cart</a>
+                                            {% endif %}
+                                        {% endif %}
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
